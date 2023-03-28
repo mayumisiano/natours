@@ -4,9 +4,9 @@ const catchAsync = require('../utils/catchAsync');
 const AppError = require('../utils/appError');
 
 exports.aliasTopTours = (req, res, next) => {
-  this.queryString.limit = '5';
-  this.queryString.sort = '-ratingsAverage,price';
-  this.queryString.fields = 'name,price,ratingsAverage,summary,difficulty';
+  req.query.limit = '5';
+  req.query.sort = '-ratingsAverage,price';
+  req.query.fields = 'name,price,ratingsAverage,summary,difficulty';
   next();
 };
 
@@ -62,7 +62,7 @@ exports.createTour = catchAsync(async (req, res, next) => {
 exports.updateTour = catchAsync(async (req, res, next) => {
   const tour = await Tour.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
-    runValidators: false,
+    runValidators: true,
   });
 
   if (!tour) {

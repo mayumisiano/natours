@@ -2,8 +2,8 @@
 /* eslint-disable node/no-unsupported-features/es-syntax */
 const AppError = require('../utils/appError');
 
-const handleCastErrorDB = (error) => {
-  const message = `Invalid ${error.path}: ${error.value}`;
+const handleCastErrorDB = (err) => {
+  const message = `Invalid ${err.path}: ${err.value}`;
   return new AppError(message, 400);
 };
 
